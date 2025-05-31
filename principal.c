@@ -1,23 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include "principal.h"
 
-//10+1 porque o \0 conta como caractere
-char** cenario;
-int linhas;
-int colunas;
+struct cenario c;
 
 void exibeCenario() {
-	for (int i = 0; i < linhas; i++) {
-		free(cenario[i]);
+	for (int i = 0; i < 5; i++) {
+		printf("%s\n", c.matriz[i]);
 	}
-	free(cenario);
 }
 
 void alocaCenario() {
-	cenario = malloc(sizeof(char*) * linhas);
-	for (int i = 0; i < linhas; i++) {
-		cenario[i] = malloc(sizeof(char) * (colunas + 1));
+	c.matriz = malloc(sizeof(char*) * c.linhas);
+	for (int i = 0; i < c.linhas; i++) {
+		c.matriz[i] = malloc(sizeof(char) * (c.colunas + 1));
 	}
 }
 
@@ -29,24 +26,75 @@ void carregaCenario() {
 		exit(1);
 	}
 
-	fscanf(f, "%d %d", &linhas, &colunas);
+	fscanf(f, "%d %d", &(c.linhas), &(c.colunas));
 
 	alocaCenario();
 	
 	for (int i = 0; i < 5; i++) {
-		fscanf(f, "%s", cenario[i]);
+		fscanf(f, "%s", c.matriz[i]);
 	}
 
 	fclose(f);
 }
 
-int main() {
-	
-	carregaCenario();
-
-	for (int i = 0; i < 5; i++) {
-		printf("%s\n", cenario[i]);
+void limpaCenario() {
+	for (int i = 0; i < c.linhas; i++) {
+		free(c.matriz[i]);
 	}
 
-	exibeCenario();
+	free(c.matriz);
+}
+ 
+int acabou() {
+	return 0;
+}
+
+void move(char direcao) {
+	int x;
+	int y;
+
+	for (int i = 0; i < c.linhas; i++) {
+		for (int j = 0; j < c.colunas; j++) {
+			if (c.matriz[i][j] == '@') {
+				x = i;
+    			y = j; 
+				break;
+			}
+		}
+	}
+
+	switch(direcao) {
+		case 'a':
+			c.matriz[x][y-1] = '@';
+		break;
+
+		case 'w':
+			c.matriz[x-1][y] = '@';
+		break;
+
+		case 's':
+			c.matriz[x+1][y] = '@';
+		break;
+
+		case 'd':
+			c.matriz[x][y+1] = '@';
+		break;
+	}
+
+	c.matriz[x][y] = '.';
+}
+
+int main() {
+
+	carregaCenario();
+
+	do {
+		exibeCenario();
+
+		char comando;
+		scanf(" %c", &comando);
+		move(comando);
+	} while (!acabou());
+	
+	limpaCenario();
 }
