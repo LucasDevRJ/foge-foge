@@ -1,6 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void movePersonagemNoCenario(CENARIO* c, JOGADOR* posicaoJogador, char posicao) {
+	for (int i = 0; i < c -> linhas; i++) {
+		for (int j = 0; j < c -> colunas; j++) {
+			if (c -> matriz[i][j] == posicao) {
+				posicaoJogador -> x = i;
+    			posicaoJogador -> y = j; 
+				break;
+			}
+		}
+	}
+}
+
 void exibeCenario(CENARIO* c) {
 	for (int i = 0; i < c -> linhas; i++) {
 		printf("%s\n", c -> matriz[i]);

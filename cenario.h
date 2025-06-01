@@ -11,9 +11,10 @@ struct posicaoJogador {
 	int y;
 };
 
-typedef struct posicao POSICAOJOGADOR;
+typedef struct posicaoJogador JOGADOR;
 
 void exibeCenario(CENARIO* c);
 void carregaCenario(CENARIO* c);
 void alocaCenario(CENARIO* c);
 void limpaCenario(CENARIO* c);
+void movePersonagemNoCenario(CENARIO* c, JOGADOR* posicaoJogador, char posicao);

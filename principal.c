@@ -5,50 +5,42 @@
 #include "cenario.c"
 
 CENARIO c;
-POSICAOJOGADOR p;
+JOGADOR posicaoJogador;
 
 int acabou() {
 	return 0;
 }
 
 void move(char direcao) {
-	int x;
-	int y;
-
-	for (int i = 0; i < c.linhas; i++) {
-		for (int j = 0; j < c.colunas; j++) {
-			if (c.matriz[i][j] == '@') {
-				x = i;
-    			y = j; 
-				break;
-			}
-		}
-	}
+	c.matriz[posicaoJogador.x][posicaoJogador.y] = '.';
 
 	switch(direcao) {
 		case 'a':
-			c.matriz[x][y-1] = '@';
+			c.matriz[posicaoJogador.x][posicaoJogador.y-1] = '@';
+			posicaoJogador.y--;
 		break;
 
 		case 'w':
-			c.matriz[x-1][y] = '@';
+			c.matriz[posicaoJogador.x-1][posicaoJogador.y] = '@';
+			posicaoJogador.x--;
 		break;
 
 		case 's':
-			c.matriz[x+1][y] = '@';
+			c.matriz[posicaoJogador.x+1][posicaoJogador.y] = '@';
+			posicaoJogador.x++;
 		break;
 
 		case 'd':
-			c.matriz[x][y+1] = '@';
+			c.matriz[posicaoJogador.x][posicaoJogador.y+1] = '@';
+			posicaoJogador.y++;
 		break;
 	}
-
-	c.matriz[x][y] = '.';
 }
 
 int main() {
 
 	carregaCenario(&c);
+	movePersonagemNoCenario(&c, &posicaoJogador, '@');
 
 	do {
 		exibeCenario(&c);
