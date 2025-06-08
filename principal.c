@@ -12,6 +12,13 @@ int acabou() {
 }
 
 void move(char direcao) {
+
+	if (direcao != 'a' &&
+		direcao != 'w' &&
+		direcao != 's' &&
+		direcao != 'd') 
+		return;
+
 	c.matriz[posicaoJogador.x][posicaoJogador.y] = '.';
 
 	switch(direcao) {
