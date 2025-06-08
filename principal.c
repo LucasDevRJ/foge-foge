@@ -19,29 +19,40 @@ void move(char direcao) {
 		direcao != 'd') 
 		return;
 
-	c.matriz[posicaoJogador.x][posicaoJogador.y] = '.';
+	int proximoX = posicaoJogador.x;
+	int proximoY = posicaoJogador.y;
+
+	//c.matriz[posicaoJogador.x][posicaoJogador.y] = '.';
 
 	switch(direcao) {
 		case 'a':
-			c.matriz[posicaoJogador.x][posicaoJogador.y-1] = '@';
-			posicaoJogador.y--;
+			proximoY--;
 		break;
 
 		case 'w':
-			c.matriz[posicaoJogador.x-1][posicaoJogador.y] = '@';
-			posicaoJogador.x--;
+			proximoX--;
 		break;
 
 		case 's':
-			c.matriz[posicaoJogador.x+1][posicaoJogador.y] = '@';
-			posicaoJogador.x++;
+			proximoX++;
 		break;
 
 		case 'd':
-			c.matriz[posicaoJogador.x][posicaoJogador.y+1] = '@';
-			posicaoJogador.y++;
+			proximoY++;
 		break;
 	}
+
+	if (proximoX >= c.linhas) 
+		return;
+	if (proximoY >= c.colunas)
+		return;
+	if (c.matriz[proximoX][proximoY] != '.')
+		return;
+
+	c.matriz[proximoX][proximoY] = '@';
+	c.matriz[posicaoJogador.x][posicaoJogador.y] = '.';
+	posicaoJogador.x = proximoX;
+	posicaoJogador.y = proximoY;
 }
 
 int main() {
