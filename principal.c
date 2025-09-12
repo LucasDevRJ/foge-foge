@@ -11,12 +11,16 @@ int acabou() {
 	return 0;
 }
 
+int ehDirecao(char direcao) {
+	return direcao == 'a' ||
+		   direcao == 'w' ||
+		   direcao == 's' ||
+		   direcao == 'd';
+}
+
 void move(char direcao) {
 
-	if (direcao != 'a' &&
-		direcao != 'w' &&
-		direcao != 's' &&
-		direcao != 'd') 
+	if (!ehDirecao(direcao)) 
 		return;
 
 	int proximoX = posicaoJogador.x;
@@ -25,32 +29,29 @@ void move(char direcao) {
 	//c.matriz[posicaoJogador.x][posicaoJogador.y] = '.';
 
 	switch(direcao) {
-		case 'a':
+		case ESQUERDA:
 			proximoY--;
 		break;
 
-		case 'w':
+		case CIMA:
 			proximoX--;
 		break;
 
-		case 's':
+		case BAIXO:
 			proximoX++;
 		break;
 
-		case 'd':
+		case DIREITA:
 			proximoY++;
 		break;
 	}
 
-	if (proximoX >= c.linhas) 
+	if (!ehValida(&c, proximoX, proximoY))
 		return;
-	if (proximoY >= c.colunas)
-		return;
-	if (c.matriz[proximoX][proximoY] != '.')
+	if (!ehVazia(&c, proximoX, proximoY))
 		return;
 
-	c.matriz[proximoX][proximoY] = '@';
-	c.matriz[posicaoJogador.x][posicaoJogador.y] = '.';
+	seMoveNoCenario(&c, posicaoJogador.x, posicaoJogador.y, proximoX, proximoY);
 	posicaoJogador.x = proximoX;
 	posicaoJogador.y = proximoY;
 }
@@ -58,7 +59,7 @@ void move(char direcao) {
 int main() {
 
 	carregaCenario(&c);
-	movePersonagemNoCenario(&c, &posicaoJogador, '@');
+	movePersonagemNoCenario(&c, &posicaoJogador, PERSONAGEM);
 
 	do {
 		exibeCenario(&c);

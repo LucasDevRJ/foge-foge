@@ -1,6 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void seMoveNoCenario(CENARIO* c, int origemX, int origemY, int xDestino, int yDestino) {
+	char personagem = c->matriz[origemX][origemY];
+	c->matriz[xDestino][yDestino] = personagem;
+	c->matriz[origemX][origemY] = VAZIO;
+}
+
+int ehValida(CENARIO* c, int x, int y) {
+	if (x >= c->linhas) 
+		return 0;
+	if (y >= c->colunas)
+		return 0;
+	return 1;
+}
+
+int ehVazia(CENARIO* c, int x, int y) {
+	return c->matriz[x][y] == VAZIO;
+}
+
 void movePersonagemNoCenario(CENARIO* c, JOGADOR* posicaoJogador, char posicao) {
 	for (int i = 0; i < c -> linhas; i++) {
 		for (int j = 0; j < c -> colunas; j++) {
