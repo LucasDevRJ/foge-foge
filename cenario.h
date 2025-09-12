@@ -1,4 +1,5 @@
 #define PERSONAGEM '@'
+#define FANTASMA 'F'
 #define VAZIO '.'
 #define PAREDE_VERTICAL '|'
 #define PAREDE_HORIZONTAL '-'
@@ -31,3 +32,4 @@ void movePersonagemNoCenario(CENARIO* c, JOGADOR* posicaoJogador, char posicao);
 int ehValida(CENARIO* c, int x, int y);
 int ehVazia(CENARIO* c, int x, int y);
 void seMoveNoCenario(CENARIO* c, int origemX, int origemY, int xDestino, int yDestino);
+void copiaCenario(CENARIO* destino, CENARIO* origem);

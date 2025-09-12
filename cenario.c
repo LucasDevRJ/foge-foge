@@ -1,5 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
+void copiaCenario(CENARIO* destino, CENARIO* origem) {
+	destino->linhas = origem->linhas;
+    destino->colunas = origem->colunas;
+    alocaCenario(destino);
+    for(int i = 0; i < origem->linhas; i++) {
+        strcpy(destino->matriz[i], origem->matriz[i]);
+    }
+}
 
 void seMoveNoCenario(CENARIO* c, int origemX, int origemY, int xDestino, int yDestino) {
 	char personagem = c->matriz[origemX][origemY];
@@ -46,7 +56,7 @@ void alocaCenario(CENARIO* c) {
 
 void carregaCenario(CENARIO* c) {
 	FILE* f;
-	f = fopen("mapa.txt", "r");
+	f = fopen("cenario.txt", "r");
 	if (f == 0) {
 		printf("Erro na leitura do mapa.\n");
 		exit(1);
