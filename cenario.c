@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-int podeAndar(CENARIO* c, int x, int y) {
-	return ehValida(c, x, y) && ehVazia(c, x, y);
+int podeAndar(CENARIO* c, int x, int y, char personagem) {
+	return ehValida(c, x, y) && !ehParede(c, x, y) && !ehPersonagem(c, x, y, personagem);
 }
 
 void copiaCenario(CENARIO* destino, CENARIO* origem) {
@@ -31,6 +31,15 @@ int ehValida(CENARIO* c, int x, int y) {
 
 int ehVazia(CENARIO* c, int x, int y) {
 	return c->matriz[x][y] == VAZIO;
+}
+
+int ehParede(CENARIO* c, int x, int y) {
+	return c -> matriz[x][y] == PAREDE_VERTICAL ||
+		   c -> matriz[x][y] == PAREDE_HORIZONTAL;
+}
+
+int ehPersonagem(CENARIO* c, int x, int y, char personagem) {
+	return c -> matriz[x][y] == personagem;
 }
 
 int movePersonagemNoCenario(CENARIO* c, JOGADOR* posicaoJogador, char posicao) {

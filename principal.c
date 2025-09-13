@@ -21,7 +21,7 @@ int praOndeFantasmaVai(int atualX, int atualY, int* destinoX, int* destinoY) {
 	for (int i = 0; i < 10; i++) {
 		int posicao = rand() % 4;
 
-		if (podeAndar(&c, opcoes[posicao][0], opcoes[posicao][1])) {
+		if (podeAndar(&c, opcoes[posicao][0], opcoes[posicao][1], FANTASMA)) {
 			*destinoX = opcoes[posicao][0];
 			*destinoY = opcoes[posicao][1];
 			return 1;
@@ -96,7 +96,7 @@ void move(char direcao) {
 		break;
 	}
 
-	if (!podeAndar(&c, proximoX, proximoY))
+	if (!podeAndar(&c, proximoX, proximoY, PERSONAGEM))
 		return;
 
 	seMoveNoCenario(&c, posicaoJogador.x, posicaoJogador.y, proximoX, proximoY);

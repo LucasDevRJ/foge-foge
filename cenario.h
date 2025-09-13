@@ -33,3 +33,7 @@ int ehValida(CENARIO* c, int x, int y);
 int ehVazia(CENARIO* c, int x, int y);
 void seMoveNoCenario(CENARIO* c, int origemX, int origemY, int xDestino, int yDestino);
 void copiaCenario(CENARIO* destino, CENARIO* origem);
+int ehParede(CENARIO* c, int x, int y);
+int podeAndar(CENARIO* c, int x, int y, char personagem);
+int ehParede(CENARIO* c, int x, int y);
+int ehPersonagem(CENARIO* c, int x, int y, char personagem);
