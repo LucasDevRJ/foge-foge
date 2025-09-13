@@ -28,7 +28,7 @@ void exibeCenario(CENARIO* c);
 void carregaCenario(CENARIO* c);
 void alocaCenario(CENARIO* c);
 void limpaCenario(CENARIO* c);
-void movePersonagemNoCenario(CENARIO* c, JOGADOR* posicaoJogador, char posicao);
+int movePersonagemNoCenario(CENARIO* c, JOGADOR* posicaoJogador, char posicao);
 int ehValida(CENARIO* c, int x, int y);
 int ehVazia(CENARIO* c, int x, int y);
 void seMoveNoCenario(CENARIO* c, int origemX, int origemY, int xDestino, int yDestino);

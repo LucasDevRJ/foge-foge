@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+int podeAndar(CENARIO* c, int x, int y) {
+	return ehValida(c, x, y) && ehVazia(c, x, y);
+}
+
 void copiaCenario(CENARIO* destino, CENARIO* origem) {
 	destino->linhas = origem->linhas;
     destino->colunas = origem->colunas;
@@ -29,16 +33,17 @@ int ehVazia(CENARIO* c, int x, int y) {
 	return c->matriz[x][y] == VAZIO;
 }
 
-void movePersonagemNoCenario(CENARIO* c, JOGADOR* posicaoJogador, char posicao) {
+int movePersonagemNoCenario(CENARIO* c, JOGADOR* posicaoJogador, char posicao) {
 	for (int i = 0; i < c -> linhas; i++) {
 		for (int j = 0; j < c -> colunas; j++) {
 			if (c -> matriz[i][j] == posicao) {
 				posicaoJogador -> x = i;
     			posicaoJogador -> y = j; 
-				break;
+				return 1;
 			}
 		}
 	}
+	return 0;
 }
 
 void exibeCenario(CENARIO* c) {

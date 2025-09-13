@@ -21,8 +21,7 @@ int praOndeFantasmaVai(int atualX, int atualY, int* destinoX, int* destinoY) {
 	for (int i = 0; i < 10; i++) {
 		int posicao = rand() % 4;
 
-		if (ehValida(&c, opcoes[posicao][0], opcoes[posicao][1])
-			&& ehVazia(&c, opcoes[posicao][0], opcoes[posicao][1])) {
+		if (podeAndar(&c, opcoes[posicao][0], opcoes[posicao][1])) {
 			*destinoX = opcoes[posicao][0];
 			*destinoY = opcoes[posicao][1];
 			return 1;
@@ -57,7 +56,9 @@ void fantasmas() {
 }
 
 int acabou() {
-	return 0;
+	JOGADOR posicao;
+	int encontrou = movePersonagemNoCenario(&c, &posicao, PERSONAGEM);
+	return !encontrou;
 }
 
 int ehDirecao(char direcao) {
@@ -95,9 +96,7 @@ void move(char direcao) {
 		break;
 	}
 
-	if (!ehValida(&c, proximoX, proximoY))
-		return;
-	if (!ehVazia(&c, proximoX, proximoY))
+	if (!podeAndar(&c, proximoX, proximoY))
 		return;
 
 	seMoveNoCenario(&c, posicaoJogador.x, posicaoJogador.y, proximoX, proximoY);
