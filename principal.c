@@ -1,11 +1,35 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "principal.h"
 #include "cenario.h"
 #include "cenario.c"
 
 CENARIO c;
 JOGADOR posicaoJogador;
+
+int praOndeFantasmaVai(int atualX, int atualY, int* destinoX, int* destinoY) {
+	int opcoes[4][2] = {
+		{ atualX, atualY + 1 },
+		{ atualX + 1, atualY },
+		{ atualX, atualY - 1 },
+		{ atualX - 1, atualY },
+	};
+
+	srand(time(0));
+
+	for (int i = 0; i < 10; i++) {
+		int posicao = rand() % 4;
+
+		if (ehValida(&c, opcoes[posicao][0], opcoes[posicao][1])
+			&& ehVazia(&c, opcoes[posicao][0], opcoes[posicao][1])) {
+			*destinoX = opcoes[posicao][0];
+			*destinoY = opcoes[posicao][1];
+			return 1;
+		}
+	}
+	return 0;
+}
 
 void fantasmas() {
 
@@ -15,8 +39,14 @@ void fantasmas() {
     for(int i = 0; i < c.linhas; i++) {
         for(int j = 0; j < c.colunas; j++) {
             if(c.matriz[i][j] == FANTASMA) {
-                if(ehValida(&c, i, j+1) && ehVazia(&c, i, j+1)) {
-                    seMoveNoCenario(&c, i, j, i, j+1);
+
+            	int destinoX;
+            	int destinoY;
+
+            	int encontrou = praOndeFantasmaVai(i, j, &destinoX, &destinoY);
+
+                if (encontrou) {
+                	seMoveNoCenario(&c, i, j, destinoX, destinoY);
                 }
             }
 
