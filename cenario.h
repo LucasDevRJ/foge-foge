@@ -8,6 +8,8 @@
 #define BAIXO 's'
 #define DIREITA 'd'
 #define ESQUERDA 'a'
+#define PILULA 'P'
+#define BOMBA 'b'
 
 struct cenario {
 	char** matriz;

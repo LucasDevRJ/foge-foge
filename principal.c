@@ -7,6 +7,7 @@
 
 CENARIO c;
 JOGADOR posicaoJogador;
+int temPilula = 0;
 
 int praOndeFantasmaVai(int atualX, int atualY, int* destinoX, int* destinoY) {
 	int opcoes[4][2] = {
@@ -99,9 +100,17 @@ void move(char direcao) {
 	if (!podeAndar(&c, proximoX, proximoY, PERSONAGEM))
 		return;
 
+	if (ehPersonagem(&c, proximoX, proximoY, PILULA)) {
+		temPilula = 1;
+	}
+
 	seMoveNoCenario(&c, posicaoJogador.x, posicaoJogador.y, proximoX, proximoY);
 	posicaoJogador.x = proximoX;
 	posicaoJogador.y = proximoY;
+}
+
+void explodePilula() {
+	printf("Explodiu!");
 }
 
 int main() {
@@ -110,11 +119,16 @@ int main() {
 	movePersonagemNoCenario(&c, &posicaoJogador, PERSONAGEM);
 
 	do {
+		printf("Tem pilula: %s\n", (temPilula ? "Sim" : "Nao"));
 		exibeCenario(&c);
 
 		char comando;
 		scanf(" %c", &comando);
 		move(comando);
+
+		if (comando == BOMBA)
+			explodePilula();
+
 		fantasmas();
 	} while (!acabou());
 	
