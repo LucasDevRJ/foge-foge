@@ -109,7 +109,7 @@ void move(char direcao) {
 	posicaoJogador.y = proximoY;
 }
 
-int quantidadeBombas = 3; // Adiciona uma variável para controlar a quantidade de bombas
+int quantidadeBombas = 2; // Adiciona uma variável para controlar a quantidade de bombas
 
 void explodePilula(int x, int y, int quantidadeVezesParaExplodirBomba) {
     if (quantidadeVezesParaExplodirBomba == 0)
@@ -130,7 +130,7 @@ int main() {
     do {
         printf("\n");
         printf("Tem bomba: %s\n", (temPilula ? "Sim" : "Nao"));
-        printf("Bombas restantes: %d\n", quantidadeBombas); // Exibe a quantidade de bombas restantes
+        printf("Bombas restantes: %d\n", quantidadeBombas+1); // Exibe a quantidade de bombas restantes
         exibeCenario(&c);
 
         char comando;
@@ -143,7 +143,7 @@ int main() {
                 quantidadeBombas--; // Decrementa a quantidade de bombas
             } else {
                 printf("Sem bombas!\n"); // Exibe uma mensagem se não houver bombas disponíveis
-                c.matriz[posicaoJogador.x][posicaoJogador.y+1] = VAZIO;
+                break;
             }
         }
 
