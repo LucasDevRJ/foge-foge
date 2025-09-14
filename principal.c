@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
+#include "time.h"
 #include "principal.h"
 #include "cenario.h"
-#include "cenario.c"
+#include "interface.h"
 
 CENARIO c;
 JOGADOR posicaoJogador;
@@ -111,15 +111,27 @@ void move(char direcao) {
 
 int quantidadeBombas = 2; // Adiciona uma variável para controlar a quantidade de bombas
 
-void explodePilula(int x, int y, int quantidadeVezesParaExplodirBomba) {
+void chamaExplodePilula() {
+	explodePilula(posicaoJogador.x, posicaoJogador.y, 0, 1, 3);
+    explodePilula(posicaoJogador.x, posicaoJogador.y, 0, -1, 3);
+    explodePilula(posicaoJogador.x, posicaoJogador.y, 1, 0, 3);
+    explodePilula(posicaoJogador.x, posicaoJogador.y, -1, 0, 3);
+}
+
+void explodePilula(int x, int y, int somaX, int somaY, int quantidadeVezesParaExplodirBomba) {
     if (quantidadeVezesParaExplodirBomba == 0)
         return;
 
-    // Verifique se y+1 está dentro dos limites da matriz
-    if (y + 1 >= 0 && y + 1 < c.colunas) {
-        c.matriz[x][y+1] = VAZIO;
-        explodePilula(x, y + 1, quantidadeVezesParaExplodirBomba - 1);
-    }
+    int novoX = x + somaX;
+    int novoY = y + somaY;
+
+    if (!ehValida(&c, novoX, novoY))
+    	return;
+    if (ehParede(&c, novoX, novoY)) 
+    	return;
+
+    c.matriz[novoX][novoY] = VAZIO;
+    explodePilula(novoX, novoY, somaX, somaY, quantidadeVezesParaExplodirBomba - 1);
 }
 
 
@@ -139,7 +151,7 @@ int main() {
 
         if (comando == BOMBA) {
             if (quantidadeBombas > 0) { // Verifica se há bombas disponíveis
-                explodePilula(posicaoJogador.x, posicaoJogador.y, 3);
+                chamaExplodePilula();
                 quantidadeBombas--; // Decrementa a quantidade de bombas
             } else {
                 printf("Sem bombas!\n"); // Exibe uma mensagem se não houver bombas disponíveis

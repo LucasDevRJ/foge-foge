@@ -1,15 +1,12 @@
+#ifndef _CENARIO_H
+#define _CENARIO_H
+
 #define PERSONAGEM '@'
-#define FANTASMA 'F'
 #define VAZIO '.'
 #define PAREDE_VERTICAL '|'
 #define PAREDE_HORIZONTAL '-'
-
-#define CIMA 'w'
-#define BAIXO 's'
-#define DIREITA 'd'
-#define ESQUERDA 'a'
+#define FANTASMA 'F'
 #define PILULA 'P'
-#define BOMBA 'b'
 
 struct cenario {
 	char** matriz;
@@ -26,10 +23,10 @@ struct posicaoJogador {
 
 typedef struct posicaoJogador JOGADOR;
 
-void exibeCenario(CENARIO* c);
 void carregaCenario(CENARIO* c);
 void alocaCenario(CENARIO* c);
 void limpaCenario(CENARIO* c);
+void exibeCenario(CENARIO* c);
 int movePersonagemNoCenario(CENARIO* c, JOGADOR* posicaoJogador, char posicao);
 int ehValida(CENARIO* c, int x, int y);
 int ehVazia(CENARIO* c, int x, int y);
@@ -39,3 +36,5 @@ int ehParede(CENARIO* c, int x, int y);
 int podeAndar(CENARIO* c, int x, int y, char personagem);
 int ehParede(CENARIO* c, int x, int y);
 int ehPersonagem(CENARIO* c, int x, int y, char personagem);
+
+#endif

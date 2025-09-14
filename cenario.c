@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "cenario.h"
 #include <string.h>
 
 int podeAndar(CENARIO* c, int x, int y, char personagem) {
@@ -53,12 +54,6 @@ int movePersonagemNoCenario(CENARIO* c, JOGADOR* posicaoJogador, char posicao) {
 		}
 	}
 	return 0;
-}
-
-void exibeCenario(CENARIO* c) {
-	for (int i = 0; i < c -> linhas; i++) {
-		printf("%s\n", c -> matriz[i]);
-	}
 }
 
 void alocaCenario(CENARIO* c) {
