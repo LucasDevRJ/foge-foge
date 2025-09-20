@@ -3,6 +3,8 @@
 
 #include "cenario.h"
 
+void exibeObjetivo();
+void exibeComandos();
 void exibeParte(char desenho[4][7], int parte);
 void exibeCenario(CENARIO* c);
 

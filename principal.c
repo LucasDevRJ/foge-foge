@@ -136,6 +136,8 @@ void explodePilula(int x, int y, int somaX, int somaY, int quantidadeVezesParaEx
 
 
 int main() {
+	exibeComandos();
+	exibeObjetivo();
     carregaCenario(&c);
     movePersonagemNoCenario(&c, &posicaoJogador, PERSONAGEM);
 
@@ -150,11 +152,11 @@ int main() {
         move(comando);
 
         if (comando == BOMBA) {
-            if (quantidadeBombas > 0) { // Verifica se há bombas disponíveis
+            if (quantidadeBombas > 0) {
                 chamaExplodePilula();
-                quantidadeBombas--; // Decrementa a quantidade de bombas
+                quantidadeBombas--; 
             } else {
-                printf("Sem bombas!\n"); // Exibe uma mensagem se não houver bombas disponíveis
+                printf("Sem bombas!\n"); 
                 break;
             }
         }

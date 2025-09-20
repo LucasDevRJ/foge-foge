@@ -37,6 +37,30 @@ char desenhoVazio[4][7] = {
 };
 
 
+#define CIMA 'w'
+#define BAIXO 's'
+#define DIREITA 'd'
+#define ESQUERDA 'a'
+#define PILULA 'P'
+#define BOMBA 'b'
+
+void exibeComandos() {
+	printf("--------|COMANDOS|----------\n");
+	printf("Cima = w\n");
+	printf("Baixo = s\n");
+	printf("Direita = d\n");
+	printf("Esquerda = a\n");
+	printf("Bomba = b\n");
+	printf("----------------------------\n");
+}
+
+void exibeObjetivo() {
+	printf("--------|OBJETIVO|----------\n");
+	printf("Exploda os fantasmas antes que eles te comam.\n");
+	printf("----------------------------\n");
+}
+
+
 void exibeParte(char desenho[4][7], int parte) {
 	printf("%s", desenho[parte]);
 }
