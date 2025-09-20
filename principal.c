@@ -77,8 +77,6 @@ void move(char direcao) {
 	int proximoX = posicaoJogador.x;
 	int proximoY = posicaoJogador.y;
 
-	//c.matriz[posicaoJogador.x][posicaoJogador.y] = '.';
-
 	switch(direcao) {
 		case ESQUERDA:
 			proximoY--;
@@ -95,6 +93,9 @@ void move(char direcao) {
 		case DIREITA:
 			proximoY++;
 		break;
+
+		default:
+			printf("Comando invalido!\n");
 	}
 
 	if (!podeAndar(&c, proximoX, proximoY, PERSONAGEM))
@@ -109,7 +110,7 @@ void move(char direcao) {
 	posicaoJogador.y = proximoY;
 }
 
-int quantidadeBombas = 2; // Adiciona uma variável para controlar a quantidade de bombas
+int quantidadeBombas = 3;
 
 void chamaExplodePilula() {
 	explodePilula(posicaoJogador.x, posicaoJogador.y, 0, 1, 3);
@@ -144,7 +145,7 @@ int main() {
     do {
         printf("\n");
         printf("Tem bomba: %s\n", (temPilula ? "Sim" : "Nao"));
-        printf("Bombas restantes: %d\n", quantidadeBombas+1); // Exibe a quantidade de bombas restantes
+        printf("Bombas restantes: %d\n", quantidadeBombas+1);
         exibeCenario(&c);
 
         char comando;

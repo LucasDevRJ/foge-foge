@@ -60,7 +60,6 @@ void exibeObjetivo() {
 	printf("----------------------------\n");
 }
 
-
 void exibeParte(char desenho[4][7], int parte) {
 	printf("%s", desenho[parte]);
 }
