@@ -96,6 +96,7 @@ void move(char direcao) {
 
 		default:
 			printf("Comando invalido!\n");
+			return;
 	}
 
 	if (!podeAndar(&c, proximoX, proximoY, PERSONAGEM))
@@ -110,7 +111,7 @@ void move(char direcao) {
 	posicaoJogador.y = proximoY;
 }
 
-int quantidadeBombas = 3;
+int quantidadeBombas = 2;
 
 void chamaExplodePilula() {
 	explodePilula(posicaoJogador.x, posicaoJogador.y, 0, 1, 3);

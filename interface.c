@@ -44,6 +44,7 @@ char desenhoVazio[4][7] = {
 #define PILULA 'P'
 #define BOMBA 'b'
 
+
 void exibeComandos() {
 	printf("--------|COMANDOS|----------\n");
 	printf("Cima = w\n");
