@@ -15,7 +15,7 @@ Criei uma [apresentação](https://lnkd.in/p/dCRKk5Tq) em formato de vídeo.
 - `Funcionalidade`: Hospedar sites na plataforma ficticia
 
 # 📁 Acesso ao projeto
-* Acesse o projeto clicando <a href="https://lucasdevrj.github.io/foge-foge/">aqui</a>
+* Acesse o projeto clicando <a href="https://lucasdevrj/foge-foge/">aqui</a>
 
 ## ✔️ Técnicas e tecnologias utilizadas
 - ``HTML``
