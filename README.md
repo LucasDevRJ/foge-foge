@@ -12,15 +12,16 @@ Jogo Pacman desenvolvido na linguagem C, sendo utilizado o terminal para joga-lo
 Criei uma [apresentação](https://lnkd.in/p/dCRKk5Tq) em formato de vídeo.
 
 # :hammer: Funcionalidades do projeto
-- `Funcionalidade`: Hospedar sites na plataforma ficticia
+- `Funcionalidade`: Jogar Foge-Foge.
 
 # 📁 Acesso ao projeto
-* Acesse o projeto clicando <a href="https://lucasdevrj/foge-foge/">aqui</a>
+* Baixe o projeto clicando <a href="https://github.com/LucasDevRJ/foge-foge/archive/refs/heads/main.zip">aqui</a>
+* Coloque o projeto em uma IDE que utilize a linguagem C
+* Coloque o projeto baixado na IDE
+* Jogue!
 
 ## ✔️ Técnicas e tecnologias utilizadas
-- ``HTML``
-- ``CSS``
-- ``Deploy``
+- ``C``
 
 # Autor
 | [<img loading="lazy" src="https://avatars.githubusercontent.com/u/95040236?v=4" width=115><br><sub>Lucas Pereira de Lima</sub>](https://github.com/LucasDevRJ) |
